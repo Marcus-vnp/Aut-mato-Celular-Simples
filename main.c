@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TAM 10 // TAMANHO DO VETOR QUE ARMAZENAR¡ AS CELULAS
+#define TAM 10 // TAMANHO DO VETOR QUE ARMAZENAR√Å AS CELULAS
 
 typedef struct{
-    // VARIAVEL QUE DEFINE O ESTADO ATUAL DA CELULA (VIVA OU MORTA) E O PR”XIMO ESTADO QUE ELA ESTAR¡ NA PR”XIMA GERA«√O
+    // VARIAVEL QUE DEFINE O ESTADO ATUAL DA CELULA (VIVA OU MORTA) E O PR√ìXIMO ESTADO QUE ELA ESTAR√Å NA PR√ìXIMA GERA√á√ÉO
     int estado, proximoEstado;
 }celula; // ESTRUTURA DAS VARIAVEIS QUE REPRESENTAM AS CELULAS
 
-void definir_vetor(celula vetor[TAM][TAM]){ // FUN«√O QUE PERMITE O JOGADOR DEFINIR O ESTADO INICIAL DE CADA CELULA
+void definir_vetor(celula vetor[TAM][TAM]){ // FUN√á√ÉO QUE PERMITE O JOGADOR DEFINIR O ESTADO INICIAL DE CADA CELULA
     int vetorExemplo[10][10] = {
     {1, 0, 1, 1, 0, 0, 1, 0, 1, 0},
     {0, 1, 0, 1, 1, 0, 0, 1, 0, 1},
@@ -71,13 +71,13 @@ void mostrar_vetor(celula vetor[TAM][TAM]){ // imprime os valores atuais do veto
 
 void define_proximo_estado(int vm, int vv, int pos_i, int pos_o, celula vetor[TAM][TAM]){
     if(vetor[pos_i][pos_o].estado == 0){ // CASO ESTEJA MORTO
-        if (vv == 3){ // SE TIVER 3 VIZINHOS VIVOS, SEU PROXIMO ESTADO SER¡ VIVA, DO CONTR¡RIO, CONTINUA MORTA
+        if (vv == 3){ // SE TIVER 3 VIZINHOS VIVOS, SEU PROXIMO ESTADO SER√Å VIVA, DO CONTR√ÅRIO, CONTINUA MORTA
             vetor[pos_i][pos_o].proximoEstado = 1;
         }else{
             vetor[pos_i][pos_o].proximoEstado = 0;
         }
     }else{ // CASO ELA ESTEJA VIVA
-        if (vv == 2 || vv == 3){ // SE TIVER 2 OU 3 VIZINHOS VIVOS, SEU PR”XIMO ESTADO SER¡ VIVA, DO CONTR¡RIO, IR¡ MORRER
+        if (vv == 2 || vv == 3){ // SE TIVER 2 OU 3 VIZINHOS VIVOS, SEU PR√ìXIMO ESTADO SER√Å VIVA, DO CONTR√ÅRIO, IR√Å MORRER
             vetor[pos_i][pos_o].proximoEstado = 1;
         }else{
             vetor[pos_i][pos_o].proximoEstado = 0;
@@ -90,8 +90,8 @@ void verificao(celula vetor[TAM][TAM]){
     int viz_vivos, viz_mortos;
 
 
-    for(int i = 0; i < TAM; i++){ // ESQUE«A
-        for(int o = 0; o < TAM; o++){ // ESQUE«A
+    for(int i = 0; i < TAM; i++){ // ESQUE√áA
+        for(int o = 0; o < TAM; o++){ // ESQUE√áA
             viz_vivos = 0;
             viz_mortos = 0;
             if (i > 0 && i < (TAM - 1)){
@@ -312,18 +312,7 @@ void passar_geracao(celula vetor[TAM][TAM]){
 }
 
 void main(){
-    celula jogo[TAM][TAM] = {
-    {1, 0, 1, 1, 0, 0, 1, 0, 1, 0},
-    {0, 1, 0, 1, 1, 0, 0, 1, 0, 1},
-    {1, 1, 0, 0, 1, 0, 1, 1, 0, 0},
-    {0, 0, 1, 0, 1, 1, 0, 1, 0, 1},
-    {1, 0, 0, 1, 1, 0, 0, 0, 1, 1},
-    {0, 1, 1, 0, 0, 1, 1, 0, 0, 1},
-    {1, 0, 1, 1, 0, 1, 0, 0, 1, 0},
-    {0, 1, 0, 0, 1, 0, 1, 1, 0, 1},
-    {1, 1, 0, 1, 0, 1, 0, 1, 1, 0},
-    {0, 0, 1, 0, 1, 0, 1, 0, 0, 1}
-}; //  vetor onde ocorre as verificacoes e passadas de geracoes
+    celula jogo[TAM][TAM]; //  vetor onde ocorre as verificacoes e passadas de geracoes
 
     int ligado = 0; // TEMPORARIAS
 
@@ -334,7 +323,7 @@ void main(){
 
         verificao(jogo);
 
-        // funÁ„o pra passar geraÁ„o
+        // fun√ß√£o pra passar gera√ß√£o
 
         passar_geracao(jogo);
 
