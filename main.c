@@ -10,40 +10,59 @@ typedef struct{
 
 void definir_vetor(celula vetor[TAM][TAM]){ // FUNÇÃO QUE PERMITE O JOGADOR DEFINIR O ESTADO INICIAL DE CADA CELULA
     int vetorExemplo[10][10] = {
-    {1, 0, 1, 1, 0, 0, 1, 0, 1, 0},
-    {0, 1, 0, 1, 1, 0, 0, 1, 0, 1},
-    {1, 1, 0, 0, 1, 0, 1, 1, 0, 0},
-    {0, 0, 1, 0, 1, 1, 0, 1, 0, 1},
-    {1, 0, 0, 1, 1, 0, 0, 0, 1, 1},
-    {0, 1, 1, 0, 0, 1, 1, 0, 0, 1},
-    {1, 0, 1, 1, 0, 1, 0, 0, 1, 0},
-    {0, 1, 0, 0, 1, 0, 1, 1, 0, 1},
-    {1, 1, 0, 1, 0, 1, 0, 1, 1, 0},
-    {0, 0, 1, 0, 1, 0, 1, 0, 0, 1}
+    {1, 0, 1, 0, 1, 1, 0, 0, 1, 0},
+    {0, 1, 0, 1, 0, 0, 1, 1, 0, 1},
+    {1, 1, 0, 0, 1, 0, 1, 0, 1, 0},
+    {0, 0, 1, 0, 1, 1, 0, 0, 0, 1},
+    {1, 0, 0, 1, 0, 1, 1, 1, 0, 0},
+    {0, 1, 1, 0, 0, 0, 1, 0, 1, 1},
+    {1, 1, 0, 1, 0, 1, 0, 0, 1, 0},
+    {0, 0, 1, 0, 1, 0, 1, 1, 0, 1},
+    {1, 0, 1, 1, 0, 1, 0, 1, 0, 0},
+    {0, 1, 0, 0, 1, 0, 1, 0, 1, 1}
 };
+    char opcao = '\0';
 
     printf("-----BEM VINDO AO JOGO DA VIDA-----\n");
     printf("PARA COMECAR, VAMOS DEFINIR OS ESTADOS DE CADA CELULA DO JOGO\n");
     printf("\nSAO %i LINHAS E %i COLUNAS\n", TAM, TAM);
-    printf("ESCREVA ABAIXO O ESTADO DA CELULA EM SUA RESPECTIVA LINHA E COLUNA\n");
     printf("0 -> MORTO\n1 -> VIVO");
     printf("\nEXEMPLO:\n\n");
     for (int i = 0; i < TAM; i++){
         printf("\t");
         for (int o = 0; o < TAM; o++){
-
-            printf("%i ", vetor[i][o].estado);
+            printf("%i ", vetorExemplo[i][o]);
         }
         printf("\n");
     }
-    printf("\nDIGITE AQUI EM BAIXO:\n");
 
-    for (int i = 0; i < TAM; i++){ // pede 10 valores (0 ou 1) 10 vezes, 0 para morto e 1 para vivo
-        printf("\t");
-        scanf("%i %i %i %i %i %i %i %i %i %i", &vetor[i][0].estado, &vetor[i][1].estado, &vetor[i][2].estado, &vetor[i][3].estado, &vetor[i][4].estado, &vetor[i][5].estado, &vetor[i][6].estado, &vetor[i][7].estado, &vetor[i][8].estado, &vetor[i][9].estado);
+    printf("\nVOCE DESEJA USAR A MATRIZ DE EXEMPLO OU DEFINIR OS ESTADOS MANUALMENTE?\n");
+    printf("digite 'm' para definir manualmente\ndigite 'n' para usar a matriz de exemplo\n");
+    while(opcao != 'm' && opcao != 'n'){
+        printf("digite: ");
+        while ((opcao = getchar()) == '\n');
+        if(opcao != 'm' && (opcao != 'm' && opcao != 'n')){
+            printf("incorreto, tente novamente\n");
+        }
+    }
+    if (opcao == 'm'){
+        printf("\nDIGITE AQUI EM BAIXO:\n");
+
+        for (int i = 0; i < TAM; i++){ // pede 10 valores (0 ou 1) 10 vezes, 0 para morto e 1 para vivo
+            printf("\t");
+            scanf("%i %i %i %i %i %i %i %i %i %i", &vetor[i][0].estado, &vetor[i][1].estado, &vetor[i][2].estado, &vetor[i][3].estado, &vetor[i][4].estado, &vetor[i][5].estado, &vetor[i][6].estado, &vetor[i][7].estado, &vetor[i][8].estado, &vetor[i][9].estado);
+        }
+
+        system("cls");
+    }else{
+        for (int i = 0; i < TAM; i++){
+            for (int o = 0; o < TAM; o++){
+                vetor[i][o].estado = vetorExemplo[i][o];
+            }
+        }
+        system("cls");
     }
 
-    system("cls");
 }
 
 void mostrar_vetor(celula vetor[TAM][TAM]){ // imprime os valores atuais do vetor
@@ -314,12 +333,12 @@ void passar_geracao(celula vetor[TAM][TAM]){
 void main(){
     celula jogo[TAM][TAM]; //  vetor onde ocorre as verificacoes e passadas de geracoes
 
-    int ligado = 0; // TEMPORARIAS
-
     definir_vetor(jogo);
 
-    while(ligado == 0){
+    while(1){ // LOOP INFINITO QUE MOSTRA O JOGO ATÉ O USUÁRIO FECHA-LO
         mostrar_vetor(jogo);
+
+        printf("\n\nO JOGO CONTINUA ATE FECHAR A JANELA!");
 
         verificao(jogo);
 
