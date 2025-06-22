@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define TAM 10 // TAMANHO DO VETOR QUE ARMAZENARÁ AS CELULAS
 
@@ -321,9 +322,9 @@ void verificao(celula vetor[TAM][TAM]){
     }
 }
 
-void passar_geracao(celula vetor[TAM][TAM]){
-    for (int i = 0; i < TAM; i++){
-        for (int o = 0; o < TAM; o++){
+void passar_geracao(celula vetor[TAM][TAM]){ // FUNÇÃO QUE SUBSTITUI O ESTADO ATUAL DAS CELULAS, PELOS SEUS ESTADOS FUTUROS
+    for (int i = 0; i < TAM; i++){           // E DEFINE COMO MORTO O PROXIMO ESTADO
+        for (int o = 0; o < TAM; o++){       // ISSO E INTERPRETADO COMO PASSAR UMA GERACAO
             vetor[i][o].estado = vetor[i][o].proximoEstado;
             vetor[i][o].proximoEstado = 0;
         }
@@ -342,11 +343,9 @@ void main(){
 
         verificao(jogo);
 
-        // função pra passar geração
-
         passar_geracao(jogo);
 
-        _sleep(500);
+        usleep(500000);
 
         system("cls");
     }
